@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: machine-info-mcp-server
+  ai:
+    mcp:
+      server:
+        enabled: true
+        name: ${spring.application.name}
+        version: 1.0.0
+        type: async
+        stdio: true
+  main:
+    banner-mode: off
+    web-application-type: none
+
+logging:
+  level:
+    root: OFF
