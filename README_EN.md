@@ -1,4 +1,4 @@
-# machine-info-mcp-server
+# Machine Info MCP Server
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Java](https://img.shields.io/badge/java-17%2B-orange)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
@@ -20,6 +20,38 @@ A lightweight host information MCP tool that provides system information through
 - Lightweight and fast
 - Easy to integrate with Spring AI applications
 - Provides MCP interface to access system information
+
+## MCP Client Integration
+
+### Configuration
+Add the following JSON configuration to your MCP client configuration file (typically `~/.mcp/config.json` or `mcp.config.json` in your project root):
+
+```json
+{
+  "mcpServers": {
+    "machine-info-mcp-server": {
+      "command": "java",
+      "args": [
+        "-jar",
+        "machine-info-mcp-server.jar"
+      ],
+      "env": {
+        "JAVA_HOME": "/path/to/your/java17"  // Optional, if JAVA_HOME is not set in system
+      },
+      "description": "MCP service for retrieving system information"
+    }
+  }
+}
+```
+
+### Configuration Options
+- `command`: The command to start the service (usually `java`)
+- `args`: Command line arguments, including `-jar` and the path to the JAR file
+- `env`: Environment variables (optional)
+- `description`: Service description (optional)
+
+### Verifying Configuration
+After saving the configuration file, you should see the `get_system_info` tool in the available tools list.
 
 ## Prerequisites
 

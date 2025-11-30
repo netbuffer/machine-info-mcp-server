@@ -21,6 +21,38 @@
 - 易于与Spring AI应用集成
 - 提供MCP接口获取系统信息
 
+## MCP客户端集成方法
+
+### 配置说明
+将如下JSON配置添加到MCP客户端的配置文件中（通常是`~/.mcp/config.json`或项目根目录下的`mcp.config.json`）：
+
+```json
+{
+  "mcpServers": {
+    "machine-info-mcp-server": {
+      "command": "java",
+      "args": [
+        "-jar",
+        "machine-info-mcp-server.jar"
+      ],
+      "env": {
+        "JAVA_HOME": "/path/to/your/java17"  // 可选，如果系统未设置JAVA_HOME
+      },
+      "description": "获取系统信息的MCP服务"
+    }
+  }
+}
+```
+
+### 配置项说明
+- `command`: 启动命令（通常是`java`）
+- `args`: 启动参数，`-jar` 后跟jar包路径
+- `env`: 环境变量配置（可选）
+- `description`: 服务描述（可选）
+
+### 验证配置
+保存配置文件后，应该能看到`get_system_info`工具在可用工具列表中。
+
 ## 环境要求
 
 - Java 17 或更高版本
