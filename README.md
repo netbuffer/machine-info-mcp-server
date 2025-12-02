@@ -10,6 +10,9 @@
 
 一个轻量级的主机信息获取MCP工具，通过MCP（模型上下文协议）接口提供系统信息，基于Spring Boot3+Spring AI+OSHI（操作系统和硬件信息）库构建。
 
+https://github.com/netbuffer/machine-info-mcp-server  
+https://gitee.com/netbuffer/machine-info-mcp-server
+
 ## 功能特性
 
 - 获取详细的系统信息，包括：
