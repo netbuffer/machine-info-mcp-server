@@ -10,6 +10,9 @@
 
 A lightweight host information MCP tool that provides system information through the MCP (Model Context Protocol) interface, built with Spring Boot 3, Spring AI, and OSHI (Operating System and Hardware Information) library.
 
+https://github.com/netbuffer/machine-info-mcp-server  
+https://gitee.com/netbuffer/machine-info-mcp-server
+
 ## Features
 
 - Get detailed system information including:
@@ -52,6 +55,8 @@ Add the following JSON configuration to your MCP client configuration file (typi
 
 ### Verifying Configuration
 After saving the configuration file, you should see the `get_system_info` tool in the available tools list.
+
+![Usage example in Trae](help/use-in-Trae.png)
 
 ## Prerequisites
 

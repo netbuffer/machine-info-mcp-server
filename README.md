@@ -56,6 +56,8 @@ https://gitee.com/netbuffer/machine-info-mcp-server
 ### 验证配置
 保存配置文件后，应该能看到`get_system_info`工具在可用工具列表中。
 
+![在Trae中使用示例](help/use-in-Trae.png)
+
 ## 环境要求
 
 - Java 17 或更高版本
