@@ -1,0 +1,35 @@
+name: echo
+
+on:
+  push:
+    branches: [ master ]
+    tags: [ '*' ]
+    paths:
+      - 'src/**'
+      - '*.xml'
+      - '.github/workflows/**'
+  pull_request:
+    branches: [ master ]
+    types: [opened, synchronize, reopened]
+
+  schedule:
+    - cron: '0 0 * * *'
+
+  workflow_dispatch:
+
+jobs:
+  echo:
+    name: echo message
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          cache: 'npm'
+          check-latest: false
+      - name: Install dependencies
+        run: |
+          echo hello
+        shell: bash
+        working-directory: ./
