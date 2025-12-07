@@ -77,4 +77,12 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>machine-info-mcp-server</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/netbuffer/machine-info-mcp-server</url>
+        </repository>
+    </distributionManagement>
+
 </project>
