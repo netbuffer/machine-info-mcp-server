@@ -1,14 +1,14 @@
 # Machine Info MCP Server
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Java](https://img.shields.io/badge/java-17%2B-orange)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.7-brightgreen)](https://spring.io/projects/spring-boot)
-[![Spring AI](https://img.shields.io/badge/Spring%20AI-1.1.0-blueviolet)](https://spring.io/projects/spring-ai)
+[![Java](https://img.shields.io/badge/java-21%2B-orange)](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.1.1-brightgreen)](https://spring.io/projects/spring-boot)
+[![Spring AI](https://img.shields.io/badge/Spring%20AI-2.0.1-blueviolet)](https://spring.io/projects/spring-ai)
 [![oshi](https://img.shields.io/badge/oshi-6.9.1-black)](https://github.com/oshi/oshi)
 
 [中文文档](README.md)
 
-A lightweight host information MCP tool that provides system information through the MCP (Model Context Protocol) interface, built with Spring Boot 3, Spring AI, and OSHI (Operating System and Hardware Information) library.
+A lightweight host information MCP tool that provides system information through the MCP (Model Context Protocol) interface, built with Spring Boot 4.1.1, Spring AI 2.0.1, and OSHI (Operating System and Hardware Information) library, with JDK 21 Virtual Threads enabled for high concurrency performance.
 
 https://github.com/netbuffer/machine-info-mcp-server  
 https://gitee.com/netbuffer/machine-info-mcp-server
@@ -39,7 +39,7 @@ Add the following JSON configuration to your MCP client configuration file (typi
         "machine-info-mcp-server.jar"
       ],
       "env": {
-        "JAVA_HOME": "/path/to/your/java17"  // Optional, if JAVA_HOME is not set in system
+        "JAVA_HOME": "/path/to/your/java21"  // Optional, if JAVA_HOME is not set in system
       },
       "description": "MCP service for retrieving system information"
     }
@@ -60,7 +60,7 @@ After saving the configuration file, you should see the `get_system_info` tool i
 
 ## Prerequisites
 
-- Java 17 or higher
+- Java 21 or higher
 - Maven 3.6.3 or higher
 
 ## Getting Started
@@ -119,6 +119,12 @@ spring:
         version: 1.0.0
         type: async
         stdio: true
+  main:
+    banner-mode: off
+    web-application-type: none
+  threads:
+    virtual:
+      enabled: true
 ```
 
 ## Contributing

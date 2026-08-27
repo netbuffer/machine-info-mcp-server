@@ -12,6 +12,9 @@ spring:
   main:
     banner-mode: off
     web-application-type: none
+  threads:
+    virtual:
+      enabled: true
 
 logging:
   level:
