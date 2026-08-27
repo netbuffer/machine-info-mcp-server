@@ -1,0 +1,56 @@
+name: Build & Release
+
+on:
+  push:
+    branches: [master, main]
+    tags: ['v*']
+  pull_request:
+    branches: [master, main]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build with Dragonwell 21
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Dragonwell JDK 21
+        uses: actions/setup-java@v5
+        with:
+          java-version: '21'
+          distribution: 'dragonwell'
+          cache: maven
+
+      - name: Build with Maven
+        run: mvn clean package -DskipTests --batch-mode
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: machine-info-mcp-server
+          path: target/machine-info-mcp-server.jar
+          retention-days: 30
+
+  release:
+    name: Release
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: machine-info-mcp-server
+          path: ./dist
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          files: ./dist/machine-info-mcp-server.jar
+          generate_release_notes: true
