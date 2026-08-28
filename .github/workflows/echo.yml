@@ -1,0 +1,33 @@
+name: Daily Build & Environment Inspector
+
+on:
+  schedule:
+    # 每天北京时间 10:08 (UTC 2:08)
+    - cron: '8 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  inspect-and-notify:
+    name: Comprehensive Environment Inspection & DingTalk Notice
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Dragonwell JDK 21
+        uses: actions/setup-java@v5
+        with:
+          java-version: '21'
+          distribution: 'dragonwell'
+          cache: maven
+
+      - name: Run Maven Build Test
+        run: mvn clean test --batch-mode
+
+      - name: Execute Python Inspection & Send DingTalk Notice
+        if: always()
+        env:
+          DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
+          JOB_STATUS: ${{ job.status }}
+        run: python3 .github/scripts/inspect_and_notify.py
